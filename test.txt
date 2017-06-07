@@ -1,0 +1,104 @@
+Channel Concatenated Coding Transmission Scheme for TSV Array Transmission 
+
+ 
+Xiaoyang DUAN, Zhensong LI, Tianfang CHEN, Min MIAO*, Yuexia ZHANG
+Information Microsystem Institute,
+Beijing Information Science and Technology University
+Beijing 100101, China
+*E-mail: miaomin@bistu.edu.cn
+ 
+
+
+ 
+Abstract¡ªIn order to improve the signal transmission performance of the TSV array transmission, TSV arrays are seen as transmission channels and a communication channel model with high noise and high crosstalk is established for TSV array transmission.  In this paper, a channel concatenated coding transmission scheme is proposed to apply the concatenated code to the TSV array transmission model, to optimize the transmission performance and realize the efficient transmission of the signal in the TSV array. In this channel, channel noise is seen as White Gaussian Noise, and crosstalk is determined by the S parameters. Taking into account the coding efficiency and transmission efficiency, the Low Density Parity Check (LDPC) code is used as the inner code and the Hamming code is used as the outer code. The simulation results show that the bit error rate (BER) performance improved at any information rate, and the BER is lower than using LDPC code alone. Therefore, the channel concatenated coding transmission scheme can be used to achieve better TSV array signal transmission, overcome the transmission problem and improve transmission performance.
+Keywords¡ªthrough silicon via (TSV); concatenated coding; transmission performance simulation
+ Introduction 
+With the high-speed development of modern electronic technology, electronic products are moving towards the direction of miniaturization, with the increasingly high integration. The traditional two-dimensional packaging technology has been unable to meet such a high density integration of electronic products. Therefore, the three-dimensional System-in-Package (SiP) technology is an important technology to make information system integration and electronic product integration continue to improve [1-3]. 
+3D SiP technology is that a number of bare chips and micro-passive devices manufactured in different integrated circuit(IC) process technologies are integrated in the same mini-silicon interposer by using micro-interconnect technology. Then, that is a high performance micro-component with system functions. The so-called 3D SiP because the technology that encapsulates two or more chips in the vertical direction without changing the size of the package
+TSV technology is the indispensable technology for 3D SiP, which using vertical silicon hole technology to complete the inter-chip interconnect. Using TSV technology can make the connection distance shorter, higher strength, and achieve smaller, thinner and better performance. At the same time, TSV technology also be used for interconnection among several heterogeneous chips [4].
+Schematic diagram of TSV technology is shown in Fig.1.
+ 
+Figure 1.  TSV technology schematic diagram
+In the silicon transfer board, the main components have a vertical upward TSV structure and the horizontal Re-Distribution Layer (RDL) in the upper and lower surface. The transmission of information between the chips is through TSV and RDL. Due to material properties and structural process characteristics, TSV channels and silicon transfer board have an interaction that impacts the signal transmission significantly. At the same time, with the integration density increasing of electronic products, TSV array density is growing, pitch between TSVs becomes smaller. This causes signal crosstalk greatly enhanced. In the literature, the influence of inter-symbol crosstalk between TSV is mainly concentrated between adjacent TSVs. TSV and its adjacent TSV form a crosstalk by capacitive and inductive coupling. The crosstalk intensity is directly related to the TSV pitch. Under the condition that the TSV pitch is one-fold the TSV diameter, inter-symbol crosstalk can reach 20% of the signal peak [5].
+Therefore, in the case of improving integration also bring signal transmission efficiency reducing and digital signal transmission errors. In order to solve this problem, Q.W proposed a solution that changing TSV structure, such as the use of PN section isolation ring and shielding TSV, etc. The noise separated from the signal, part of the noise crosstalk is set to directly absorb the shielding structure, thereby improving system¡¯s isolation [6]. However, TSV array works in high-density integration situation and a lot of TSV structure are required to be placed in very small areas. If a relatively large area of the shield structure is added, not only will limit the number of TSV array, but also increase the cost. Therefore, this method is not practical for the quality of signal transmission improvement. Thus, another method is proposed that the TSV arrays are seen as wireless transmission channels with high noise and high crosstalk. Through the channel coding and decoding technology to solve the problem that digital signal transmission error rate is too large. The literature [7] proposes to transmit the Fibonacci sequence to attenuate crosstalk in TSV transmission. There is also a literature [8] introduce the TSV channel modeling, and add error correct codes in the channel. In this schemes, Hamming coding and LDPC coding, are adopted, and their performances are evaluated against uncoded scenario to demonstrate the BER enhancement effectiveness. The results show that the channel with LDPC coding modeling has greatly improved the performance of information transmission, and the transmission efficiency can be improved significantly. On this basis, this paper proposes a scheme to add channel concatenated coding to the TSV array transmission channel, and to overcome the bit error rate performance more efficiently.
+TSV array transmission channel modeling 
+To establish a TSV array channel modeling with channel codecs, some factors that affect the transmission performance of TSV array need to be analyzed.
+TSV array transmission crosstalk analysis 
+Whether it is the traditional two-dimensional interconnection or the current three-dimensional vertical interconnection, the crosstalk problem between chips are inevitable because of the increasing chip¡¯s work speed and transmission data rate. Crosstalk problem can seriously affect the channel integrity of the transmission process, which will result in performance loss, power consumption, the most serious situation will cause the transmission signal error, resulting in system crash.
+The main research on the crosstalk of TSV array is to establish the electrical model by electromagnetic simulation software, and analyzes its characteristics under frequency domain and time domain. In the analysis of frequency domain characteristics, the main study is S parameters that can reflect the TSV array of signal transmission properties. In the analysis of time domain characteristics, simulation software and eye diagram analysis can be used to obtain TSV delay characteristics, characteristic impedance, etc. The integrity of the analysis signal is observed by characteristic impedance. And the eye diagram is used to determine the quality of the transmission signal.
+Establishment of a transport model
+In TSV array, the TSV structure is usually in pairs. When establishing the TSV model, one of the TSV channel can be regarded as the main channel which is used to transmit signal, and the adjacent TSV channel can be regarded as the reference channel, that is, the crosstalk generation channel.
+Fig.2 shows the electromagnetic simulation model of the TSV pair established by High Frequency Structure Simulator (HFSS). Port1 and port2 are the main channel, port3 and port4 are the reference channel. Port1 and port3 are signal output terminals. Port2 and port4 are the receiving signal terminals. For the four-port TSV model, the main analysis of the S11-return loss, S21-insertion loss, S21 mainly reflects the main channel signal transmission characteristics, and S31 reflects the reference channel on the main channel.
+ 
+Figure 2.  TSV pair model by HFSS
+According to the electromagnetic simulation model of TSV and the influence of the S parameters on the channel, the wireless channel model can be established.
+Fig.3 is the Gaussian interference channel.
+ 
+Figure 3.  Gaussian interference channel
+Where X_i(i=1,2) is the signal input of the channel, Y_i(i=1,2) is the signal output of the channel, Z_i(i=1,2) is the Gaussian noise in the channel, g_ii(i=1,2) is the gain of the channel, and g_ij(i,j=1,2 and i¡Ùj) is the gain generated by the adjacent channel. Equation (1) and (2) also show the input-output relationship of the channel:
+	Y_1=g_11 X_1+g_12 X_2+Z_1	(1)
+	Y_2=g_22 X_2+g_21 X_1+Z_2	(2)
+By comparing the two models, the gains in the Gaussian interference channel correspond to the S parameters in the electromagnetic model. Inverse Fast Fourier Transform (IFFT) can be used for frequency domain to time domain conversion about S parameters. Then, the gains can be known.
+Concatenated coding transmission scheme
+In 1966, Forney first proposed to use two short codes to form a long code, hoping to correct the inner code¡¯s error by the outer code, so the concatenated coding came into being.
+The structure of the concatenated coding is usually divided into serial concatenated and parallel concatenated. At the time of decoding, the decoding is performed in the order from the inside to the outside, that is, each inner code word is seen as a symbol of the code. So the outer code is considered to have the ability to correct unexpected errors.
+TSV array transmission concatenated coding scheme proposed in this paper, a serial concatenated coding structure is adopted. Taking into account the coding efficiency and program sustainability, the scheme uses LDPC coding as inner code, the Hamming coding as outer code.
+Introduction to LDPC Coding 
+Gallager's article proves that the LDPC code is a code with Shannon's limit performance and is an advanced channel error correction coding [9]. After more than ten years ¡® research and development, LDPC coding technology has become more mature, as the 4th generation mobile communication system in the high reliability of digital transmission channel coding, also used in the second generation of European digital video broadcasting satellite standard-DVB-S.2 and the Spatial Data Advisory Committee (CCSDS) telemetry channel coding standard.
+The long code length of the LDPC code can be adapted to the TSV number of the high order of magnitude in the TSV array. The high density transmission channel requires parallel channel coding to require long code length coding characteristics, which can achieve maximum coding efficiency; Code characteristics of the LDPC coding fit a short distance signal transmission, high rate, low delay characteristics; And, LDPC coding in the hardware implementation is relatively easy, in large-capacity communications applications have great advantages.
+Introduction to Hamming Coding
+Hamming coding is a kind of linear block code that can be detected and corrected by Richard-Hamming at Bell Labs.
+Because Hamming coding compilation is simple, easy to implement, can correct the burst error. So use of Hamming coding as inner code in the concatenated coding transmission scheme.
+Transmission scheme description
+In response to the above proposed error problem about TSV array. This paper presents the TSV array transmission concatenated coding scheme as shown in Fig.4:
+ 
+Figure 4.  concatenated coding channel
+The concatenated coding channel is based on the Gaussian interference channel to add the Hamming coding and LDPC coding, the channel gains are still TSV array electromagnetic model S21, S31 parameters. The entire concatenated coding transmission scheme flow is shown in Fig.5.
+ 
+Figure 5.  concatenated coding transmission program flow
+The scheme flow is divided into three parts: electromagnetic simulation part, coding part, decoding part. The three parts will be introduced separately:
+1)	Electromagnetic simulation£º Firstly, a 4-port model as shown in Fig.2 that by HFSS. And then get the S parameters by the electromagnetic simulation. Finally, perform the IFFT calculation. In this scheme, S21 and S31 parameters need IFFT calculate. The resulting time domain gains correspond to g_11, g_12respectively.
+2)	Coding: The system generates k-bit random binary information sequence, and then the information sequence for Hamming coding, as (n, k) Hamming code. That is, k-bit information code, (n-k)-bit check code. And the code is coded by using LDPC coding and become (2n,3,d) LDPC code. That is, the code rate is 0.5, the column weight is 3, the line weight is d (2¡Üd¡Ü6). After the coding is completed, enter the interference channel.
+3)	Decoding: After passing through a noisy interference channel, the information is decoded. According to the inner and outer code sequence, first use the BP decoding algorithm for LDPC code decoding, so that can be n-bit information sequence. This sequence can be compared with the Hamming code, and get the inner code BER. And use Hamming code decoding algorithm, the final result, be compared with the random binary information sequence, get the BER.
+Simulation results and analysis
+In order to verify the feasibility and validity, this scheme will carry out S parameters simulation by HFSS and BER calculation by MATLAB. Electromagnetic simulation environment set the information rate of 10Gbps, 5Gbps and MATLAB set the check codes of 8-10. Then, (255 * 510), (511 * 1022), (1023 * 2046) transmission code blocks are respectively transmitted with the corresponding LDPC coding. Through the simulation of the above scheme, it is possible to study whether the concatenated code can improve the efficiency of signal transmission in TSV array and the different efficiency of between the different check codes of Hamming coding.
+Simulation and analysis of 10Gbps information transmission rate
+
+In order to get gains from TSV array channel, S parameters are indispensable. Based on the multi-port S parameters, the physical channels are represented by ¡°black-boxes¡± with the S parameters indicating their characteristics in a SPICE-type circuit simulation tool. Time-domain responses under step or square wave stimuli are obtained based on the impulse response of the channel. In addition, IFFT is used to transform the S parameter into T parameter in time domain to reveal the time-domain characteristics in more detail.  Then, the S21 is used as channel gain-g_11 and S31 is used as the crosstalk of the adjacent channel-g_12.
+In the information transmission rate of 10Gbps, the resulting gain is g_11=0.921, g_12=-0.013. And then through the MATLAB simulation, the transmission performance is shown in Fig.6-8.
+ 
+Figure 6.  8-bit check codes BER in 10Gbps
+ 
+Figure 7.  9-bit check codes BER in 10Gbps
+ 
+Figure 8.  10-bit check codes BER in 10Gbps
+
+From the above simulation results can be seen, the SNR (signal noise ratio, SNR) 0dB -3dB, the code BER of 0.4 or so, little impact on information transmission. In more than 4dB after the BER decreased, each increase 1dB SNR, the BER decreased by an order of magnitude, at 7dB when BER of 10exp(-4); The overall concatenated coding in the case of low SNR on the information transmission has a very good effect, the BER can reach 10exp(-3).The BER can be reduced to 10exp(-7) when the SNR is 7dB. Comparison of three figures, the number of check codes of Hamming code increase, the number of LDPC code transmission code blocks increase, the BER will be reduced in the situation that same SNR. But when the SNR increases, the reduction will be reduced.
+Simulation and analysis of 5Gbps information transmission rate
+The simulation process is similar to the previous one, the resulting gain is g_11=0.817, g_12=-0.015. The transmission performance is shown in Fig.9-11.
+ 
+Figure 9.  8-bit check codes BER in 5Gbps
+ 
+Figure 10.  9-bit check codes BER in 5Gbps
+ 
+Figure 11.  10-bit check codes BER in 5Gbps
+
+It can be seen from the figure, the BER when information rate is 5Gbps is higher than 10Gbps, but still can reduce the BER to 10exp(-7).
+Based on the above two simulation results, there will have excellent performance and, a strong error correction capability by using concatenated coding scheme for TSV array transmission. Especially for high-speed signals, the effect is better. So TSV array transmission concatenated coding scheme can be good for high-speed signal integrity and transmission performance has a very good effect. 
+Discussions and conclusions
+In this paper, the TSV array transmission channel for TSV array transmission and reference communication Gaussian interference channel is studied. A channel concatenated coding scheme is proposed with inner code as LDPC code and outer code as Hamming code is used as channel coding in the channel. The scheme introduces the channel concatenated coding of TSV array, as the long code length, good linear complexity and excellent performance of LDPC code, and simple and easy to implement of Hamming code. It improves the performance of TSV array transmission. The feasibility and effectiveness of the scheme are verified by the simulation results.
+In future work, LDPC code can be further studied, such as using QC-LDPC code to check if can continue to improve transmission performance. And to study whether the scheme can be hardware implementation, the formation of a practical effect can be TSV array transmission channel coding scheme.
+Acknowledgment 
+The work was supported in part by National Natural Science Foundation of China (Grant No. 61674016), in part by the State Key Development Program for Basic Research of China (973) under Grant 2015CB057201, in part by the Importation and Development of High-Caliber Talents Project of Beijing Municipal Institutions (Great Wall Scholar, No. CIT&TCD20150320), Beijing Nova program Interdisciplinary Studies Cooperative projects (No. Z161100004916036), in part by the General Program of Science and Technology Development Project of Beijing Municipal Education Commission of China (Project No. KM201611232012) and the Importation and Development of High-Caliber Talents Project of Beijing Municipal Institutions (Grant No.CIT&TCD201504058).
+References
+	The International Technology Roadmap for Semiconductors(ITRS) [EB/OL]. 2012 Edition. Information from http:// www.itrs.net.
+V. Kripesh £¬ S.W. Yoon £¬ V.P. Ganesh £¬ N. Khan £¬and M.D. Rotaru. ¡°Three-dimensional system-in-package using stacked silicon platform technology,¡± IEEE Transactions on Advanced Packaging, 2005, pp. 377-386.
+	R.S. Patti, ¡°Three-Dimensional Integrated Circuits and the Future of System-on-Chip Designs,¡± Proceedings of the IEEE, 2006, pp. 1214-1224.
+M.J. Dong £¬ C. Ryu £¬ K.Y. Lee £¬and B.H. Cho, ¡°Development and Evaluation of 3-D SiP with Vertically Interconnected Through Silicon Vias(TSV),¡± 2007 Electronic Componet and Technology Conference, 2007, pp. 847-852.
+R. Weerasekera £¬ M. Grange £¬ D. Pamunuwa £¬and H. Tenhunen, ¡°Compact modelling of Through-Silicon Vias (TSVs) in three-dimensional (3-D) integrated circuits,¡± IEEE International Conference on 3d System Integration. IEEE, 2009, pp. 1-8.
+Q. W, ¡°Research on TSV coupled crosstalk noise,¡± Xi'an: Xidian University, 2014.
+X. Cui £¬ X. Cui £¬ Y. Ni £¬ M. Miao £¬ Y Jin. ¡°An Enhancement of Crosstalk Avoidance Code Based on Fibonacci Numeral System for Through Silicon Vias,¡± IEEE Transactions on Very Large Scale Integration Systems, PP. 1-10.
+[8]	M. Miao , Z. Li , X. Duan , et al. ¡°Data Transfer Performance Analysis and Enhancement of Critical 3D Interconnects in a 3D SiP Based on Communication Channel Modeling Methodology,¡± 2017 Electronic Component and Technology Conference. in press.
+[9]	R.G. Gallager. ¡°Low density parity check codes,¡± IRE Trans Inform Theory, 1996, pp. 21-28.
+ 
+
